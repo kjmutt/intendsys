@@ -20,7 +20,25 @@ All pages share `styles.css` and `nav.js`.
 
 ## Enabling the preview
 
-Settings → Pages → **Source**: Deploy from a branch → `main` / `(root)` → Save. Requires the repo to be public for free-tier Pages.
+Settings → Pages → **Source**: Deploy from a branch → `main` / `(root)` → Save. Requires the repo to be public for free-tier Pages. Once enabled, live at `https://kjmutt.github.io/intendsys/` before the custom domain below is wired up.
+
+## Custom domain — intendsys.com
+
+`CNAME` is committed. Remaining steps are registrar-side + a GitHub toggle:
+
+1. At the registrar (e.g. GoDaddy → **My Products → DNS → DNS Management** for `intendsys.com`):
+
+   | Type | Host | Value | Notes |
+   |---|---|---|---|
+   | A | `@` | `185.199.108.153` | edit the existing default `@` A record rather than adding a duplicate |
+   | A | `@` | `185.199.109.153` | add |
+   | A | `@` | `185.199.110.153` | add |
+   | A | `@` | `185.199.111.153` | add |
+   | CNAME | `www` | `kjmutt.github.io` | edit the existing default `www` CNAME |
+
+   Multiple A records on the same host (`@`) is fine — that's how GitHub Pages' four IPs coexist. Just don't leave the registrar's default parking-page A record in place alongside them.
+
+2. GitHub: Settings → Pages → **Custom domain** → enter `intendsys.com` → wait for the DNS check to pass → enable **Enforce HTTPS** (cert issuance can take up to 24h after DNS propagates; DNS itself is usually 10–60 minutes on GoDaddy).
 
 ## Content notes
 

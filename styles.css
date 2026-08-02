@@ -123,7 +123,13 @@ p{ color: var(--ink-soft); }
 .nav{ display:flex; align-items:center; padding: 18px 0; gap: 12px; }
 .logo{ display:flex; align-items:center; gap:10px; font-family: var(--display); font-weight:600; font-size:18px; color: var(--ink); flex-shrink:0; }
 .logo svg{ width:26px; height:26px; color: var(--navy); }
-.logo .accent{ color: var(--blue); }
+.logo .accent{
+  color: var(--blue); /* fallback for browsers without background-clip:text */
+  background: linear-gradient(135deg, #8B7CFF, var(--emerald));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 :root[data-theme="dark"] .logo svg{ color: var(--ink); }
 @media (prefers-color-scheme: dark){ .logo svg{ color: var(--ink); } }
 
